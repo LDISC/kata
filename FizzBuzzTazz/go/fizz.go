@@ -1,6 +1,38 @@
 package fizzbuzz
 
-func fizzbuzz(n int) string {
+func fizzbuzz(n int) (str string) {
+	str = fizzbuzzNaive(n)
+	str = fizzbuzzBetter(n)
+
+	return
+}
+
+func fizzbuzzBetter(n int) (str string) {
+	if n == 0 {
+		return
+	}
+
+	fizzDuo := []struct {
+		divider int
+		str     string
+	}{
+		{3, "Fizz"},
+		{5, "Buzz"},
+		{7, "Tazz"},
+		{11, "Mozz"},
+		{13, "Vezz"},
+	}
+
+	for _, element := range fizzDuo {
+		if n%element.divider == 0 {
+			str += element.str
+		}
+	}
+
+	return
+}
+
+func fizzbuzzNaive(n int) string {
 	str := ""
 	if n == 0 {
 		return str
